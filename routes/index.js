@@ -11,7 +11,7 @@ router.post("/error", function (req, res) {
 })
 
 router.get("/error", function (req, res) {
-  res.status(401).json({ status: false, msg: "Session expired\nPlease login again." })
+  res.status(401).json({ status: false, msg: "Session expired/Please login again." })
 })
 
 module.exports = router;

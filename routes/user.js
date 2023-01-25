@@ -72,6 +72,7 @@ router.post('/forgotpassword', function (req, res) {
                         res.status(500).json({ status: false, msg: err })
                     }
                     else {
+                        console.log(reslt._id)
                         res.status(200).json({ status: true, msg: 'Account Found', data: reslt._id })
                     }
                 })
@@ -98,7 +99,7 @@ router.post('/validLink', function (req, res) {
             res.status(500).json({ status: false, msg: error })
         }
         else {
-            console.log(result)
+           
             if (result.length > 0) {
                 res.status(200).json({ status: true, data: result[0], msg: 'link is valid' })
             }

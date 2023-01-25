@@ -1,0 +1,31 @@
+var mongoose=require('mongoose')
+const subCategorySchema=mongoose.Schema({
+    /*categoryid
+subcategoryname
+description
+picture
+created_on
+updated_on*/
+subcategory_name:{
+    type:"string",
+    required:true
+},
+description:{
+    type:"string",
+    required:true
+},
+picture:{
+    type:"string",
+    required:true
+},
+categoryid:{
+    type:mongoose.Schema.Types.ObjectId,
+    required:true,
+    ref:"category"
+}
+},
+{
+    timestamps:{createdAt:"created_on",updatedAt:"updated_on"}
+}
+)
+module.exports=mongoose.model("subcategory",subCategorySchema)

@@ -15,7 +15,7 @@ var resetPasswordSchema = mongoose.Schema({
     }
 },
     {
-        timeStamp: {
+        timeStamps: {
             createdAt: true,
             updatedAt: true
         }

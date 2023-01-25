@@ -15,6 +15,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var database = require('./routes/database')
 var userRouter = require('./routes/user')
+var categoryRouter=require('./routes/category')
+var subCategoryRouter=require('./routes/subcategory')
+var genreRouter=require('./routes/genre')
+var videoRouter=require('./routes/video')
 database()
 var app = express();
 
@@ -28,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 /** */
-app.use(session({ secret: "MySecret", resave: false, saveUninitialized: true, cookie: { maxAge: 60000 } }))
+app.use(session({ secret: "MySecret", resave: false, saveUninitialized: true, cookie: { maxAge: 3600000 } }))
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStrategy({ usernameField: "email" }, function (email, password, next) {
@@ -49,7 +53,7 @@ passport.use(new LocalStrategy({ usernameField: "email" }, function (email, pass
           next(null, {
             status: true,
             data: result[0],
-            msg:"Login suceessfully"
+            msg:"Login successfully"
           })
         } else {
           return next(null, {
@@ -79,6 +83,10 @@ passport.deserializeUser(function (user, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
+app.use('/category',categoryRouter)
+app.use('/subcategory',subCategoryRouter)
+app.use('/genre',genreRouter)
+app.use('/video',videoRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
